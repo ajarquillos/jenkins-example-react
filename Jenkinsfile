@@ -12,9 +12,9 @@ pipeline {
     stage('Build') {
       steps {
         echo "Current workspace is $WORKSPACE"
-        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . && docker run --name build6 --detach -t $IMAGE_NAME:$IMAGE_TAG '
-        sh 'docker cp build6:/build .'
-        sh 'docker -rm build6'
+        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . && docker run --name build7 --detach -t $IMAGE_NAME:$IMAGE_TAG '
+        sh 'docker cp build7:/build/build ./pepe'
+        sh 'docker -rm build7'
       }
     }
     stage('Login') {
