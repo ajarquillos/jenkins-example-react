@@ -11,7 +11,11 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'DOCKER_BUILDKIT=1 docker build -t $IMAGE_NAME:$IMAGE_TAG . --output out .'
+        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . '
+        sh 'docker run -u root --entrypoint=/bin/sh --rm -i -v .:/build $IMAGE_NAME:$IMAGE_TAG  << COMMANDS
+            pwd
+            cp * /apache
+            COMMANDS'        
       }
     }
     stage('Login') {
