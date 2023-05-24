@@ -8,6 +8,3 @@ RUN npm ci
 COPY public/ public
 COPY src/ src
 RUN npm run build
-
-FROM scratch AS export-stage
-COPY --from=build /build/build/ .
