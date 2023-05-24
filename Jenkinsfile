@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
+        sh 'DOCKER_BUILDKIT=1 docker build -t $IMAGE_NAME:$IMAGE_TAG . --output out .'
       }
     }
     stage('Login') {
