@@ -11,6 +11,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        echo "Current workspace is $WORKSPACE"
         sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . && docker run --name build2 --detach -t $IMAGE_NAME:$IMAGE_TAG '
         sh 'docker cp build2:/build .'
       }
