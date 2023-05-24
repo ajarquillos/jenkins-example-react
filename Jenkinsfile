@@ -14,7 +14,7 @@ pipeline {
         echo "Current workspace is $WORKSPACE"
         sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . && docker run --name build5 --detach -t $IMAGE_NAME:$IMAGE_TAG '
         sh 'docker cp build5:/build .'
-        sh 'ls -lt .'
+        sh 'docker -rm build5'
       }
     }
     stage('Login') {
