@@ -12,6 +12,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . && docker run --name build --detach -t $IMAGE_NAME:$IMAGE_TAG '
+        sh 'docker cp build:/build .'
       }
     }
     stage('Login') {
