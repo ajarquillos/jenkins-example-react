@@ -12,9 +12,9 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG . '
-        sh 'docker run -u root --entrypoint=/bin/sh --rm -i -v .:/build $IMAGE_NAME:$IMAGE_TAG  << COMMANDS
-            pwd
-            cp * /apache
+        sh 'docker run -u root --entrypoint=/bin/sh --rm -i -v .:/build $IMAGE_NAME:$IMAGE_TAG  << COMMANDS \
+            pwd \
+            cp * /apache \
             COMMANDS'        
       }
     }
